@@ -183,8 +183,8 @@
       function fraseHint(){
         const f = frases[intentos % frases.length];
         hint.textContent = f + (intentos>2 ? ` (Intentos: ${intentos})` : '');
-        if(intentos===3) subtitle.textContent = "Creo que el universo conspira por un ‘sí’… ";
-        if(intentos===6) subtitle.textContent = "Ok, oficialmente eres muy insistente con el ‘no’ ";
+        if(intentos===30) subtitle.textContent = "Creo que el universo conspira por un ‘sí’… ";
+        if(intentos===50) subtitle.textContent = "Ok, oficialmente eres muy insistente con el ‘no’ ";
       }
 
       function posicionarAleatorio(inicial=false){
@@ -222,4 +222,5 @@
   </script>
 </body>
 </html>
+
 

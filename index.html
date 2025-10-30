@@ -105,7 +105,7 @@
     .btn-ghost{background:#ffffffcc; color:#2a2a3a; border:1px solid var(--card-border)}
     .btn-ghost:active{transform:scale(.98)}
     #noBtn{
-      position:relative; top:15px; /* Desplazado hacia abajo */
+      position:relative; top:15px; /* Ajustado para no tapar el “Sí” */
       white-space:nowrap; touch-action:none;
     }
     .hint{font-size:.92rem; color:#6a6a85; margin-top:6px; min-height:1.2em}
@@ -147,7 +147,7 @@
 
       <div class="cta" role="group" aria-label="Opciones de respuesta" id="ctaArea">
         <a class="btn btn-primary" href="oficialmente.html" id="yesBtn">Sí, ¡hagámoslo! ❤️</a>
-        <!-- Botón "No" desplazado a una nueva sección -->
+        <!-- El botón "No" se desplaza y no se solapa -->
         <button class="btn btn-ghost" id="noBtn" type="button" aria-label="No">No… ejem, mejor luego 😅</button>
       </div>
 

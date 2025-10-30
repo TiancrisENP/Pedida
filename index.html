@@ -61,6 +61,7 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: clamp(16px, 4vw, 32px);
+      text-align:center;
     }
     .eyebrow{
       display:inline-block; font-size:.8rem; letter-spacing:.12em; text-transform:uppercase;
@@ -78,12 +79,6 @@
       margin:0 0 1rem; font-weight:500;
       font-size: clamp(.98rem, 3.8vw, 1.05rem);
     }
-    .video-wrap{
-      position:relative; width:100%; aspect-ratio:16/9; border-radius:18px;
-      overflow:hidden; border:1px solid var(--card-border);
-      background:#000; margin: 12px 0 16px;
-    }
-    video{width:100%; height:100%; object-fit:cover; display:block}
     
     .cta{
       display:flex; gap:12px; flex-direction:column; align-items:center;
@@ -134,16 +129,9 @@
       <span class="eyebrow" aria-hidden="true">Tengo algo que preguntarte</span>
       <h1 id="titulo">¿Quieres que seamos novios?</h1>
       <p class="subtitle" id="subtitle">
-        Grabé este pequeño video para decirte lo importante que eres para mí.
-        Si sientes lo mismo, me haría muy feliz hacerlo oficial 💫
+        Desde el primer momento en que te conocí, supe que tenías algo único. Cada risa, cada conversación, y cada instante que compartimos ha hecho que mi corazón lata más rápido. 
+        ¿Te gustaría caminar juntos por este hermoso viaje llamado "noviazgo"? ❤️
       </p>
-
-      <div class="video-wrap">
-        <video controls playsinline preload="metadata" title="Mensaje para ti" poster="">
-          <source src="tu-video.mp4" type="video/mp4">
-          Tu navegador no soporta el video HTML5. Abre: <a href="tu-video.mp4">Ver video</a>
-        </video>
-      </div>
 
       <div class="cta" role="group" aria-label="Opciones de respuesta" id="ctaArea">
         <a class="btn btn-primary" href="oficialmente.html" id="yesBtn">Sí, ¡hagámoslo! ❤️</a>
@@ -194,43 +182,4 @@
 
       function fraseHint(){
         const f = frases[intentos % frases.length];
-        hint.textContent = f + (intentos>2 ? ` (Intentos: ${intentos})` : '');
-        if(intentos===3) subtitle.textContent = "Creo que el universo conspira por un ‘sí’… 😌";
-        if(intentos===6) subtitle.textContent = "Ok, oficialmente eres muy insistente con el ‘no’ 🤭";
-      }
-
-      function posicionarAleatorio(inicial=false){
-        const rectCta = cta.getBoundingClientRect();
-        const rectNo  = noBtn.getBoundingClientRect();
-
-        // márgenes para no salirse
-        const padding = 6;
-        const maxLeft = Math.max(0, rectCta.width  - rectNo.width  - padding);
-        const maxTop  = Math.max(0, rectCta.height - rectNo.height - padding);
-
-        if (rectCta.height < 100) cta.style.minHeight = '120px'; // más aire en móvil
-
-        const left = clamp(random(0, maxLeft), 0, maxLeft);
-        const top  = clamp(random(0, maxTop),  0, maxTop);
-
-        noBtn.style.left = left + 'px';
-        noBtn.style.top  = top  + 'px';
-
-        if (!inicial) {
-          const rot = (Math.random()*10 - 5).toFixed(1);
-          noBtn.style.transform = `translateY(-2px) rotate(${rot}deg)`;
-          setTimeout(()=> noBtn.style.transform = 'none', 120);
-        }
-      }
-
-      function random(min, max){ return Math.random() * (max - min) + min; }
-      function clamp(n, min, max){ return Math.min(Math.max(n, min), max); }
-
-      // Reposicionar al rotar o cambiar tamaño (móvil)
-      ['resize','orientationchange'].forEach(ev=>{
-        window.addEventListener(ev, ()=>posicionarAleatorio(true));
-      });
-    })();
-  </script>
-</body>
-</html>
+        hint.textContent = f + (intentos>2 ? ` (Int

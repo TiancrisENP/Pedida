@@ -2,12 +2,9 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>¿Quieres que seamos novios?</title>
   <meta name="description" content="Un pequeño detalle para hacer oficial lo nuestro ♥" />
-  <meta property="og:title" content="¿Quieres que seamos novios?" />
-  <meta property="og:description" content="Un pequeño detalle para hacer oficial lo nuestro ♥" />
-  <meta property="og:type" content="website" />
   <meta name="theme-color" content="#ff7aa8" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
@@ -15,94 +12,109 @@
     :root{
       --bg1:#0f0c29; --bg2:#302b63; --bg3:#24243e;
       --card:#ffffffcc; --card-border:#ffffff40;
-      --text:#212121; --muted:#5e5e72;
+      --text:#21212a; --muted:#616178;
       --accent:#ff6b9a; --accent-2:#ff9ec1;
       --shadow: 0 10px 30px rgba(0,0,0,.25);
       --radius: 22px;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --gap: clamp(10px, 3vw, 20px);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      margin:0;
+      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
       background:
         radial-gradient(1200px 800px at 20% 10%, #ff7aa820 0%, transparent 70%),
         radial-gradient(1000px 700px at 80% 90%, #7aa8ff1a 0%, transparent 70%),
         linear-gradient(135deg, var(--bg1), var(--bg2) 50%, var(--bg3));
       overflow-x:hidden;
+      padding-top: var(--safe-top);
+      padding-bottom: var(--safe-bottom);
+      -webkit-tap-highlight-color: transparent;
     }
-    /* Fondo corazones */
-    .hearts{position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.35; filter:blur(.4px)}
-    .heart{position:absolute; width:16px; height:16px; transform:rotate(45deg); animation:float 12s linear infinite; background:linear-gradient(180deg, var(--accent), var(--accent-2))}
-    .heart::before,.heart::after{content:""; position:absolute; width:16px; height:16px; background:linear-gradient(180deg, var(--accent), var(--accent-2)); border-radius:50%}
-    .heart::before{left:-8px} .heart::after{top:-8px}
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important; transition:none !important}
+    }
+    /* Corazones de fondo (suaves en móvil) */
+    .hearts{position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.28; filter:blur(.4px)}
+    .heart{position:absolute; width:14px; height:14px; transform:rotate(45deg); animation:float 12s linear infinite; background:linear-gradient(180deg,var(--accent),var(--accent-2))}
+    .heart::before,.heart::after{content:""; position:absolute; width:14px; height:14px; background:linear-gradient(180deg,var(--accent),var(--accent-2)); border-radius:50%}
+    .heart::before{left:-7px} .heart::after{top:-7px}
     @keyframes float{0%{transform:translateY(100vh) rotate(45deg) scale(.9);opacity:0}10%{opacity:.8}100%{transform:translateY(-20vh) rotate(45deg) scale(1.1);opacity:0}}
-    .heart:nth-child(1){left:4%;animation-duration:12s;animation-delay:0s}
-    .heart:nth-child(2){left:10%;animation-duration:14s;animation-delay:.5s}
-    .heart:nth-child(3){left:16%;animation-duration:11s;animation-delay:1s}
-    .heart:nth-child(4){left:22%;animation-duration:15s;animation-delay:2.2s}
-    .heart:nth-child(5){left:28%;animation-duration:13s;animation-delay:1.4s}
-    .heart:nth-child(6){left:34%;animation-duration:14s;animation-delay:.8s}
-    .heart:nth-child(7){left:40%;animation-duration:12s;animation-delay:2.8s}
-    .heart:nth-child(8){left:46%;animation-duration:13.5s;animation-delay:1.6s}
-    .heart:nth-child(9){left:52%;animation-duration:12.5s;animation-delay:.2s}
-    .heart:nth-child(10){left:58%;animation-duration:16s;animation-delay:2.1s}
-    .heart:nth-child(11){left:64%;animation-duration:11.5s;animation-delay:1.9s}
-    .heart:nth-child(12){left:70%;animation-duration:13s;animation-delay:.9s}
-    .heart:nth-child(13){left:76%;animation-duration:12s;animation-delay:.4s}
-    .heart:nth-child(14){left:82%;animation-duration:14.5s;animation-delay:1.2s}
-    .heart:nth-child(15){left:88%;animation-duration:12.8s;animation-delay:2.6s}
-    .heart:nth-child(16){left:25%;animation-duration:15.2s;animation-delay:3s}
-    .heart:nth-child(17){left:55%;animation-duration:14.8s;animation-delay:2.9s}
-    .heart:nth-child(18){left:85%;animation-duration:13.2s;animation-delay:2.7s}
-    main{min-height:100%; display:grid; place-items:center; padding:clamp(16px,3vw,48px); position:relative; z-index:1}
+    .heart:nth-child(1){left:6%}.heart:nth-child(2){left:18%}.heart:nth-child(3){left:28%}
+    .heart:nth-child(4){left:40%}.heart:nth-child(5){left:52%}.heart:nth-child(6){left:64%}
+    .heart:nth-child(7){left:76%}.heart:nth-child(8){left:88%}.heart:nth-child(9){left:12%}
+    .heart:nth-child(10){left:34%}.heart:nth-child(11){left:46%}.heart:nth-child(12){left:58%}
+    .heart:nth-child(13){left:70%}.heart:nth-child(14){left:82%}.heart:nth-child(15){left:24%}
+    .heart:nth-child(16){left:50%}.heart:nth-child(17){left:74%}.heart:nth-child(18){left:90%}
+
+    main{min-height:100%; display:grid; place-items:center; padding: var(--gap); position:relative; z-index:1}
     .card{
-      width:min(940px,100%);
-      background:linear-gradient(180deg,#ffffffaa,#ffffff88);
-      backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+      width:min(960px, 100%);
+      background:linear-gradient(180deg,#ffffffb3,#ffffff88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border:1px solid var(--card-border);
-      border-radius:var(--radius); box-shadow:var(--shadow);
-      padding:clamp(18px,3vw,32px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(16px, 4vw, 32px);
     }
     .eyebrow{
-      display:inline-block; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase;
+      display:inline-block; font-size:.8rem; letter-spacing:.12em; text-transform:uppercase;
       color:#fff; background:linear-gradient(90deg,#ff7aa8,#ffd1e1);
-      padding:.35rem .7rem; border-radius:999px; margin-bottom:1rem;
+      padding:.35rem .7rem; border-radius:999px; margin-bottom:.8rem;
       box-shadow:0 6px 18px rgba(255,122,168,.35);
     }
-    h1{margin:.25rem 0 .75rem; font-size:clamp(1.8rem,3.2vw,3rem); line-height:1.1; color:#1e1e2f; letter-spacing:.2px}
-    .subtitle{color:var(--muted); margin:0 0 1.25rem; font-weight:500}
+    h1{
+      margin:.2rem 0 .6rem;
+      font-size: clamp(1.8rem, 6vw, 3rem);
+      line-height:1.1; color:#1e1e2f;
+    }
+    .subtitle{
+      color:var(--muted);
+      margin:0 0 1rem; font-weight:500;
+      font-size: clamp(.98rem, 3.8vw, 1.05rem);
+    }
     .video-wrap{
-      position:relative; width:100%; aspect-ratio:16/9; border-radius:calc(var(--radius) - 6px);
-      overflow:hidden; border:1px solid var(--card-border); box-shadow:inset 0 0 0 1px #ffffff66; background:#000; margin:18px 0 22px;
+      position:relative; width:100%; aspect-ratio:16/9; border-radius:18px;
+      overflow:hidden; border:1px solid var(--card-border);
+      background:#000; margin: 12px 0 16px;
     }
     video{width:100%; height:100%; object-fit:cover; display:block}
+
     .cta{
       position:relative;
       display:flex; gap:12px; flex-wrap:wrap; align-items:center;
-      margin-top:8px; min-height:56px;
+      margin-top:6px; min-height:100px; /* alto extra para móvil */
     }
     .btn{
-      appearance:none; border:none; cursor:pointer; text-decoration:none; font-weight:700; letter-spacing:.3px;
-      padding:.9rem 1.2rem; border-radius:14px; transition:transform .15s ease, box-shadow .15s ease, background .2s ease, left .15s ease, top .15s ease;
-      box-shadow:0 8px 20px rgba(0,0,0,.12); user-select:none; font-size:1rem;
+      appearance:none; border:none; cursor:pointer; text-decoration:none;
+      font-weight:700; letter-spacing:.3px;
+      padding: clamp(12px, 3.5vw, 16px) clamp(16px, 5vw, 20px);
+      border-radius:14px; transition: transform .15s ease, box-shadow .15s ease, background .2s ease, left .15s ease, top .15s ease;
+      box-shadow:0 8px 20px rgba(0,0,0,.12); user-select:none; font-size: clamp(1rem, 4.2vw, 1.05rem);
+      min-height:44px; /* mínimo accesible */
+      touch-action:manipulation;
     }
     .btn:focus{outline:3px solid #0000; box-shadow:0 0 0 4px #ff9ec166}
-    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff}
-    .btn-primary:hover{transform:translateY(-2px)}
-    .btn-ghost{background:#ffffffb3; color:#2a2a3a; border:1px solid var(--card-border)}
-    .btn-ghost:hover{transform:translateY(-2px)}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff; flex:1 1 220px; text-align:center}
+    .btn-primary:active{transform:scale(.98)}
+    .btn-ghost{background:#ffffffcc; color:#2a2a3a; border:1px solid var(--card-border)}
+    .btn-ghost:active{transform:scale(.98)}
     #noBtn{
-      position:absolute; left:calc(100% - 140px); top:0;
+      position:absolute; left:calc(100% - 150px); top:0;
       white-space:nowrap; touch-action:none;
     }
-    .hint{font-size:.9rem; color:#6a6a85; margin-top:8px}
+    .hint{font-size:.92rem; color:#6a6a85; margin-top:6px; min-height:1.2em}
+
+    footer{margin-top:12px; font-size:.9rem; color:#6a6a85; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
     .dot{width:6px; height:6px; border-radius:50%; background:#ff7aa8; display:inline-block}
-    footer{margin-top:18px; font-size:.9rem; color:#6a6a85; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
-    @media (max-width:440px){
-      .btn-primary{flex:1 1 auto}
-      .subtitle{font-size:.98rem}
-      .cta{min-height:110px}
+
+    @media (min-width:700px){
+      .cta{min-height:70px}
     }
   </style>
 </head>
@@ -122,27 +134,20 @@
       <span class="eyebrow" aria-hidden="true">Tengo algo que preguntarte</span>
       <h1 id="titulo">¿Quieres que seamos novios?</h1>
       <p class="subtitle" id="subtitle">
-        Grabé este pequeño video para decirte lo importante que eres para mí. 
+        Grabé este pequeño video para decirte lo importante que eres para mí.
         Si sientes lo mismo, me haría muy feliz hacerlo oficial 💫
       </p>
 
       <div class="video-wrap">
-        <video controls playsinline preload="metadata" title="Mensaje para ti">
+        <video controls playsinline preload="metadata" title="Mensaje para ti" poster="">
           <source src="tu-video.mp4" type="video/mp4">
-          Tu navegador no soporta el video HTML5. Puedes abrirlo directamente aquí: <a href="tu-video.mp4">Ver video</a>
+          Tu navegador no soporta el video HTML5. Abre: <a href="tu-video.mp4">Ver video</a>
         </video>
       </div>
 
       <div class="cta" role="group" aria-label="Opciones de respuesta" id="ctaArea">
-        <!-- Redirige a la página de celebración -->
-        <a class="btn btn-primary" href="oficialmente.html" id="yesBtn">
-          Sí, ¡hagámoslo! ❤️
-        </a>
-
-        <!-- El botón “No” escapa -->
-        <button class="btn btn-ghost" id="noBtn" type="button" aria-label="No">
-          No… ejem, mejor luego 😅
-        </button>
+        <a class="btn btn-primary" href="oficialmente.html" id="yesBtn">Sí, ¡hagámoslo! ❤️</a>
+        <button class="btn btn-ghost" id="noBtn" type="button" aria-label="No">No… ejem, mejor luego 😅</button>
       </div>
 
       <p class="hint" id="hint" aria-live="polite"></p>
@@ -172,16 +177,17 @@
 
       posicionarAleatorio(true);
 
+      // eventos táctiles y de puntero (móvil/desktop)
       ['pointerenter','pointerdown','touchstart','focus'].forEach(evt=>{
         noBtn.addEventListener(evt, evadir, {passive:true});
       });
-      noBtn.addEventListener('click', evadir);
+      noBtn.addEventListener('click', evadir); // por si alguien alcanza
 
       function evadir(e){
         intentos++;
         fraseHint();
         posicionarAleatorio();
-        if (navigator.vibrate) navigator.vibrate(10);
+        if (navigator.vibrate) navigator.vibrate(12);
         e.preventDefault();
       }
 
@@ -196,14 +202,15 @@
         const rectCta = cta.getBoundingClientRect();
         const rectNo  = noBtn.getBoundingClientRect();
 
+        // márgenes para no salirse
         const padding = 6;
-        const maxLeft = rectCta.width  - rectNo.width  - padding;
-        const maxTop  = rectCta.height - rectNo.height - padding;
+        const maxLeft = Math.max(0, rectCta.width  - rectNo.width  - padding);
+        const maxTop  = Math.max(0, rectCta.height - rectNo.height - padding);
 
-        if (rectCta.height < 90) cta.style.minHeight = '110px';
+        if (rectCta.height < 100) cta.style.minHeight = '120px'; // más aire en móvil
 
-        const left = clamp(random(0, maxLeft), 0, Math.max(0, maxLeft));
-        const top  = clamp(random(0, maxTop),  0, Math.max(0, maxTop));
+        const left = clamp(random(0, maxLeft), 0, maxLeft);
+        const top  = clamp(random(0, maxTop),  0, maxTop);
 
         noBtn.style.left = left + 'px';
         noBtn.style.top  = top  + 'px';
@@ -218,7 +225,10 @@
       function random(min, max){ return Math.random() * (max - min) + min; }
       function clamp(n, min, max){ return Math.min(Math.max(n, min), max); }
 
-      window.addEventListener('resize', ()=>posicionarAleatorio(true));
+      // Reposicionar al rotar o cambiar tamaño (móvil)
+      ['resize','orientationchange'].forEach(ev=>{
+        window.addEventListener(ev, ()=>posicionarAleatorio(true));
+      });
     })();
   </script>
 </body>

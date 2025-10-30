@@ -127,7 +127,7 @@
   <main>
     <article class="card" role="region" aria-labelledby="titulo">
       <span class="eyebrow" aria-hidden="true">Tengo algo que preguntarte</span>
-      <h1 id="titulo">¿Quieres que seamos novios?</h1>
+      <h1 id="titulo">Eres especial para mi</h1>
       <p class="subtitle" id="subtitle">
         Desde el primer momento en que te conocí, supe que tenías algo único. Cada risa, cada conversación, y cada instante que compartimos ha hecho que mi corazón lata más rápido. 
         ¿Quieres que seamos novios? ❤️
@@ -183,8 +183,8 @@
       function fraseHint(){
         const f = frases[intentos % frases.length];
         hint.textContent = f + (intentos>2 ? ` (Intentos: ${intentos})` : '');
-        if(intentos===3) subtitle.textContent = "Creo que el universo conspira por un ‘sí’… 😌";
-        if(intentos===6) subtitle.textContent = "Ok, oficialmente eres muy insistente con el ‘no’ 🤭";
+        if(intentos===3) subtitle.textContent = "Creo que el universo conspira por un ‘sí’… ";
+        if(intentos===6) subtitle.textContent = "Ok, oficialmente eres muy insistente con el ‘no’ ";
       }
 
       function posicionarAleatorio(inicial=false){
@@ -222,3 +222,4 @@
   </script>
 </body>
 </html>
+

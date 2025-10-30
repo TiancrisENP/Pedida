@@ -130,11 +130,11 @@
       <h1 id="titulo">¿Quieres que seamos novios?</h1>
       <p class="subtitle" id="subtitle">
         Desde el primer momento en que te conocí, supe que tenías algo único. Cada risa, cada conversación, y cada instante que compartimos ha hecho que mi corazón lata más rápido. 
-        ¿Te gustaría caminar juntos por este hermoso viaje llamado "noviazgo"? ❤️
+        ¿Quieres que seamos novios? ❤️
       </p>
 
       <div class="cta" role="group" aria-label="Opciones de respuesta" id="ctaArea">
-        <a class="btn btn-primary" href="oficialmente.html" id="yesBtn">Sí, ¡hagámoslo! ❤️</a>
+        <a class="btn btn-primary" href="oficialmente.html" id="yesBtn">Sí! ❤️</a>
         <!-- El botón "No" se desplaza y no se solapa -->
         <button class="btn btn-ghost" id="noBtn" type="button" aria-label="No">No… ejem, mejor luego 😅</button>
       </div>
@@ -182,4 +182,43 @@
 
       function fraseHint(){
         const f = frases[intentos % frases.length];
-        hint.textContent = f + (intentos>2 ? ` (Int
+        hint.textContent = f + (intentos>2 ? ` (Intentos: ${intentos})` : '');
+        if(intentos===3) subtitle.textContent = "Creo que el universo conspira por un ‘sí’… 😌";
+        if(intentos===6) subtitle.textContent = "Ok, oficialmente eres muy insistente con el ‘no’ 🤭";
+      }
+
+      function posicionarAleatorio(inicial=false){
+        const rectCta = cta.getBoundingClientRect();
+        const rectNo  = noBtn.getBoundingClientRect();
+
+        // márgenes para no salirse
+        const padding = 6;
+        const maxLeft = Math.max(0, rectCta.width  - rectNo.width  - padding);
+        const maxTop  = Math.max(0, rectCta.height - rectNo.height - padding);
+
+        if (rectCta.height < 100) cta.style.minHeight = '120px'; // más aire en móvil
+
+        const left = clamp(random(0, maxLeft), 0, maxLeft);
+        const top  = clamp(random(0, maxTop),  0, maxTop);
+
+        noBtn.style.left = left + 'px';
+        noBtn.style.top  = top  + 'px';
+
+        if (!inicial) {
+          const rot = (Math.random()*10 - 5).toFixed(1);
+          noBtn.style.transform = `translateY(-2px) rotate(${rot}deg)`;
+          setTimeout(()=> noBtn.style.transform = 'none', 120);
+        }
+      }
+
+      function random(min, max){ return Math.random() * (max - min) + min; }
+      function clamp(n, min, max){ return Math.min(Math.max(n, min), max); }
+
+      // Reposicionar al rotar o cambiar tamaño (móvil)
+      ['resize','orientationchange'].forEach(ev=>{
+        window.addEventListener(ev, ()=>posicionarAleatorio(true));
+      });
+    })();
+  </script>
+</body>
+</html>
